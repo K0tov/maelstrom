@@ -1793,15 +1793,137 @@ button,
 }
 
 /* ========================================
-   MOBILE RESPONSIVENESS
+   MOBILE RESPONSIVENESS & BURGER MENU
    ======================================== */
+
+/* Burger Button */
+.burger-btn {
+    display: none;
+    /* Hidden on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1002;
+    /* Above everything */
+    padding: 0;
+}
+
+.burger-btn span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Burger Animation */
+.burger-btn.active span:first-child {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.burger-btn.active span:last-child {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(10, 14, 39, 0.98);
+    /* Deep dark blue, almost opaque */
+    backdrop-filter: blur(20px);
+    z-index: 1001;
+    /* Below burger, above header */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.mobile-menu.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu__links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    text-align: center;
+}
+
+.mobile-link {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.mobile-menu.active .mobile-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stagger animation delay */
+.mobile-menu.active .mobile-link:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.mobile-menu.active .mobile-link:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.mobile-menu.active .mobile-link:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.mobile-menu.active .mobile-link:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
 
 @media (max-width: 768px) {
 
-    /* Disable custom cursor on touch */
+    /* Show Burger */
+    .burger-btn {
+        display: flex;
+    }
+
+    /* Hide Desktop Nav Elements */
+    .header__nav,
+    .desktop-only {
+        display: none !important;
+    }
+
+    /* Header Adjustments */
+    .header__container {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .header__content {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    /* Disable Custom Cursor */
     .cursor-ball,
     .cursor-outline,
-    * {
+    body {
         cursor: auto !important;
     }
 
@@ -1809,147 +1931,132 @@ button,
         display: none !important;
     }
 
-    /* Header */
-    .header__container {
-        padding: 0.5rem;
-    }
-
-    .header__content {
-        gap: 0.5rem;
-        grid-template-columns: auto 1fr auto;
-    }
-
-    .header__nav {
-        display: none;
-        /* Hide nav links on mobile for simplicity, or hamburger later */
-    }
-
-    .logo-text {
-        display: none;
-        /* Show icon only */
-    }
-
     /* Hero */
     .hero__grid {
         grid-template-columns: 1fr;
-        text-align: center;
+        padding-top: 1vh;
+        /* Reset padding */
         gap: 2rem;
-        padding-top: 6rem;
+        align-content: center;
+        height: 100%;
     }
 
     .hero__visual-col {
-        height: 40vh;
+        height: 35vh;
         order: -1;
-        /* Visual on top */
     }
 
     .hero__headline {
-        font-size: 2.5rem;
-    }
-
-    .hero__subline {
-        font-size: 1rem;
-        margin: 0 auto;
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
     }
 
     .hero__meta {
-        justify-content: center;
+        justify-content: flex-start;
+        /* Align left scaling better */
     }
 
-    /* Work Section */
+    /* WORKS - Vertical Stack for Mobile */
     .work-section {
         height: auto;
-        min-height: 100vh;
+        min-height: auto;
+        padding: var(--spacing-lg) 0;
     }
 
-    .horizontal-scroll-container,
+    .horizontal-scroll-container {
+        overflow: visible;
+        height: auto;
+    }
+
     .horizontal-scroll-wrapper {
-        /* On mobile, usually better to stack projects or keep horizontal with native scroll */
-        /* For now, keeping horizontal but enabling native swipe */
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
+        flex-direction: column;
+        /* Stack vertically */
+        height: auto;
+        width: 100%;
+        transform: none !important;
+        /* Disable JS transform if any */
+        padding-left: 0;
     }
 
     .project-item {
-        scroll-snap-align: start;
-        padding: 1rem;
+        /* Standard card style */
+        width: 100%;
+        height: auto;
+        min-height: 50vh;
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+        padding: var(--spacing-md);
+        scroll-snap-align: none;
     }
 
+    .project-item--intro {
+        height: auto;
+        min-height: 30vh;
+        padding-left: var(--spacing-md);
+        text-align: left;
+    }
+
+    .section-title {
+        font-size: 4rem;
+    }
+
+    .scroll-hint {
+        display: none;
+    }
+
+    /* No scroll hint needed for vertical */
+
     .project-item__title {
-        font-size: 3rem;
+        font-size: 3.5rem;
+        /* Readable mobile size */
     }
 
     /* About Section */
     .about-grid {
         grid-template-columns: 1fr;
-        gap: 3rem;
-        text-align: left;
+        gap: 2rem;
     }
 
     .about-headline {
         font-size: 2rem;
-        text-align: left;
-        /* Reset justify for mobile readability */
-    }
-
-    .about-details {
-        margin-top: 0;
-        max-width: 100%;
-        text-align: left;
+        line-height: 1.2;
     }
 
     .glass-sphere {
-        position: relative;
-        top: auto;
-        left: auto;
-        width: 150px;
-        margin: 0 auto 2rem;
-        display: block;
+        width: 120px;
     }
 
     /* Footer */
     .footer__content {
         grid-template-columns: 1fr;
         gap: 3rem;
-        text-align: center;
-    }
-
-    .footer__links {
-        justify-content: center;
-        text-align: center;
-    }
-
-    .footer__link {
-        margin: 0 auto;
     }
 
     .footer__text {
-        font-size: 3rem;
-        /* Smaller "Big" text */
+        font-size: 15vw;
+        /* Scales with screen width */
     }
 
-    .footer__meta {
-        flex-direction: column;
-        gap: 1rem;
-        align-items: center;
+    .footer__links {
+        grid-template-columns: 1fr;
+        /* Single column links */
+        gap: 1.5rem;
     }
 
-    /* Modal */
+    /* Modal Mobile */
     .modal-content {
-        width: 95%;
-        padding: 1.5rem;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        border-radius: 0;
+        padding: 6rem 1.5rem 2rem;
+        /* Top padding for close button */
+        overflow-y: auto;
+        /* Allow scroll inside modal */
     }
 
-    .modal-title {
-        font-size: 1.75rem;
-    }
-
-    .budget-options {
-        gap: 0.5rem;
-    }
-
-    .budget-option span {
-        padding: 0.5rem 1rem;
-        font-size: 0.8rem;
+    .modal-close {
+        top: 1.5rem;
+        right: 1.5rem;
+        background: rgba(255, 255, 255, 0.1);
     }
 }

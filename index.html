@@ -64,8 +64,25 @@
                     <a href="#contact" class="nav-link">Контакти</a>
                 </nav>
 
-                <a href="#join" id="openContact" class="shiny-cta"><span>Зв'язатись</span></a>
+                <a href="#join" id="openContact" class="shiny-cta desktop-only"><span>Зв'язатись</span></a>
+
+                <button class="burger-btn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu">
+            <div class="mobile-menu__links">
+                <a href="#work" class="mobile-link">Роботи</a>
+                <a href="#about" class="mobile-link">Про мене</a>
+                <a href="#contact" class="mobile-link">Контакти</a>
+                <a href="#join" class="mobile-link mobile-contact-trigger">Зв'язатись</a>
+                <!-- ID trigger handled differently or reuse class -->
+            </div>
+        </div>
         </div>
     </header>
 

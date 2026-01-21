@@ -4,7 +4,57 @@
 (function () {
     'use strict';
 
-    const header = document.querySelector('.header');
+    // --- Burger Menu Logic ---
+    const burgerBtn = document.querySelector('.burger-btn');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+    const mobileContactTrigger = document.querySelector('.mobile-contact-trigger');
+
+    if (burgerBtn && mobileMenu) {
+        burgerBtn.addEventListener('click', () => {
+            const isActive = burgerBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+
+            // Lock scroll if menu is open
+            if (isActive) {
+                document.body.style.overflow = 'hidden';
+                if (window.lenis) window.lenis.stop();
+            } else {
+                document.body.style.overflow = '';
+                if (window.lenis) window.lenis.start();
+            }
+        });
+
+        // Close menu when a link is clicked
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                burgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+                if (window.lenis) window.lenis.start();
+            });
+        });
+
+        // Open Contact Modal from Mobile Menu
+        if (mobileContactTrigger) {
+            mobileContactTrigger.addEventListener('click', (e) => {
+                e.preventDefault();
+                // Close mobile menu first
+                burgerBtn.classList.remove('active');
+                mobileMenu.classList.remove('active');
+
+                // Slight delay to allow menu close animation
+                setTimeout(() => {
+                    const contactModal = document.getElementById('contactModal');
+                    if (contactModal) {
+                        contactModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                        if (window.lenis) window.lenis.stop();
+                    }
+                }, 300);
+            });
+        }
+    }
 
     if (!header) {
         console.warn('⚠️ Header element not found');
