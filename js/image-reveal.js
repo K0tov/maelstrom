@@ -1,13 +1,19 @@
-// Image Reveal on Hover - Syncs with Custom Cursor Ball
+// Image Reveal on Hover - Syнcs with Custom Cursor Ball
 (function () {
     'use strict';
+
+    // Skip on mobile devices (no cursor, touch-based)
+    if (window.innerWidth < 768) {
+        console.log('🖼️ Image reveal skipped on mobile');
+        return;
+    }
 
     const container = document.querySelector('.image-reveal-container');
     const projectItems = document.querySelectorAll('.project-item');
     const cursorBall = document.querySelector('.cursor-ball');
 
     if (!container || projectItems.length === 0) {
-        console.warn(' Image reveal elements not found');
+        console.warn('⚠️ Image reveal elements not found');
         return;
     }
 

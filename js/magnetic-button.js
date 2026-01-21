@@ -3,6 +3,12 @@
 (function () {
     'use strict';
 
+    // Skip on mobile devices (no mouse hover)
+    if (window.innerWidth < 768) {
+        console.log('🧲 Magnetic buttons skipped on mobile');
+        return;
+    }
+
     const buttons = document.querySelectorAll('.btn-magnetic');
 
     if (buttons.length === 0) {

@@ -92,6 +92,12 @@ class TouchTexture {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Skip on mobile devices
+  if (window.innerWidth < 768) {
+    console.log('🌊 Hero gradient skipped on mobile');
+    return;
+  }
+
   if (typeof THREE === 'undefined') {
     console.error('Three.js not loaded');
     return;
