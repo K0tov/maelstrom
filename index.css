@@ -2007,7 +2007,8 @@ button,
         /* Override any inline JS width */
         max-width: 100%;
         height: auto;
-        min-height: 50vh;
+        min-height: auto;
+        /* Reduced from 50vh */
         border-right: none;
         border-bottom: 1px solid var(--color-border);
         padding: var(--spacing-md);
@@ -2016,13 +2017,15 @@ button,
 
     .project-item--intro {
         height: auto;
-        min-height: 30vh;
+        min-height: auto;
+        /* Reduced from 30vh */
         padding-left: var(--spacing-md);
         text-align: left;
     }
 
     .section-title {
-        font-size: 4rem;
+        font-size: 2.5rem;
+        line-height: 1.1;
     }
 
     .scroll-hint {
@@ -2031,15 +2034,40 @@ button,
 
     /* No scroll hint needed for vertical */
 
-    .project-item__title {
-        font-size: 3.5rem;
-        /* Readable mobile size */
+    .project-item__index {
+        position: static;
+        font-size: 1rem;
+        opacity: 0.5;
+        margin-bottom: 0.5rem;
     }
 
-    /* About Section */
+    .project-item__title {
+        font-size: 1.75rem;
+        /* Smaller, readable mobile size */
+        line-height: 1.2;
+    }
+
+    /* About Section - Fix GIF Overlap */
     .about-grid {
-        grid-template-columns: 1fr;
+        display: flex !important;
+        flex-direction: column;
         gap: 2rem;
+    }
+
+    .glass-sphere {
+        position: static !important;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto 2rem;
+        order: 1;
+        /* GIF first */
+        transform: none !important;
+        animation: none !important;
+    }
+
+    .about-intro {
+        order: 2;
+        /* Headline second */
     }
 
     .about-headline {
@@ -2047,8 +2075,9 @@ button,
         line-height: 1.2;
     }
 
-    .glass-sphere {
-        width: 120px;
+    .about-details {
+        order: 3;
+        /* Details last */
     }
 
     /* Footer */

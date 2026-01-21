@@ -4,6 +4,12 @@ gsap.registerPlugin(ScrollTrigger);
 console.log('Scroll Animations: Initializing Horizontal Scroll...');
 
 window.addEventListener('load', () => {
+    // Disable horizontal scroll on mobile
+    if (window.innerWidth < 768) {
+        console.log('Scroll Animations: Skipping horizontal scroll on mobile');
+        return;
+    }
+
     const workSection = document.querySelector('.work-section');
     const wrapper = document.querySelector('.horizontal-scroll-wrapper');
     const projectItems = document.querySelectorAll('.project-item');
