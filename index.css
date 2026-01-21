@@ -1909,12 +1909,17 @@ button,
         padding: 0.75rem 1rem;
     }
 
-    /* Hero Header - White text on dark background */
-    .header__logo,
-    .burger-btn span {
+    .header__logo {
         color: #fff !important;
-        background-color: #fff;
-        /* For burger lines */
+    }
+
+    .logo-icon,
+    .logo-text {
+        color: #fff !important;
+    }
+
+    .burger-btn span {
+        background-color: #fff !important;
     }
 
     .header__content {
