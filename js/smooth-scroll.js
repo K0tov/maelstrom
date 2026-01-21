@@ -5,8 +5,8 @@ const lenis = new Lenis({
     direction: 'vertical',
     gestureDirection: 'vertical',
     smooth: true,
-    mouseMultiplier: 1,
-    smoothTouch: false,
+    mouseMultiplier: 1, // Increased for better touchpad response
+    smoothTouch: false, // Disabled for touch devices (use native scroll)
     touchMultiplier: 2,
 });
 

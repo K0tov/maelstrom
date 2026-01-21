@@ -1939,20 +1939,23 @@ button,
         gap: 2rem;
         align-content: center;
         height: 100%;
+        text-align: center;
+        /* Center text since no visual */
     }
 
     .hero__visual-col {
-        height: 35vh;
-        order: -1;
+        display: none;
+        /* Hide 3D canvas on mobile */
     }
 
     .hero__headline {
         font-size: clamp(2.5rem, 10vw, 3.5rem);
+        margin: 0 auto;
     }
 
     .hero__meta {
-        justify-content: flex-start;
-        /* Align left scaling better */
+        justify-content: center;
+        /* Center since no visual */
     }
 
     /* WORKS - Vertical Stack for Mobile */
@@ -2029,11 +2032,19 @@ button,
     .footer__content {
         grid-template-columns: 1fr;
         gap: 3rem;
+        text-align: left;
+        /* Left align for mobile */
     }
 
     .footer__text {
-        font-size: 15vw;
-        /* Scales with screen width */
+        font-size: clamp(2rem, 12vw, 4rem);
+        /* More controlled scaling */
+        text-align: left;
+        line-height: 1.1;
+    }
+
+    .footer__email {
+        font-size: 1rem;
     }
 
     .footer__links {
