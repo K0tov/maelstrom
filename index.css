@@ -1792,10 +1792,164 @@ button,
     color: #fff;
 }
 
-.budget-option input:checked+span {
-    background: var(--color-accent-2);
-    /* Highlight active */
-    border-color: var(--color-accent-2);
-    color: #fff;
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+/* ========================================
+   MOBILE RESPONSIVENESS
+   ======================================== */
+
+@media (max-width: 768px) {
+
+    /* Disable custom cursor on touch */
+    .cursor-ball,
+    .cursor-outline,
+    * {
+        cursor: auto !important;
+    }
+
+    .cursor-ball {
+        display: none !important;
+    }
+
+    /* Header */
+    .header__container {
+        padding: 0.5rem;
+    }
+
+    .header__content {
+        gap: 0.5rem;
+        grid-template-columns: auto 1fr auto;
+    }
+
+    .header__nav {
+        display: none;
+        /* Hide nav links on mobile for simplicity, or hamburger later */
+    }
+
+    .logo-text {
+        display: none;
+        /* Show icon only */
+    }
+
+    /* Hero */
+    .hero__grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+        padding-top: 6rem;
+    }
+
+    .hero__visual-col {
+        height: 40vh;
+        order: -1;
+        /* Visual on top */
+    }
+
+    .hero__headline {
+        font-size: 2.5rem;
+    }
+
+    .hero__subline {
+        font-size: 1rem;
+        margin: 0 auto;
+    }
+
+    .hero__meta {
+        justify-content: center;
+    }
+
+    /* Work Section */
+    .work-section {
+        height: auto;
+        min-height: 100vh;
+    }
+
+    .horizontal-scroll-container,
+    .horizontal-scroll-wrapper {
+        /* On mobile, usually better to stack projects or keep horizontal with native scroll */
+        /* For now, keeping horizontal but enabling native swipe */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    .project-item {
+        scroll-snap-align: start;
+        padding: 1rem;
+    }
+
+    .project-item__title {
+        font-size: 3rem;
+    }
+
+    /* About Section */
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: left;
+    }
+
+    .about-headline {
+        font-size: 2rem;
+        text-align: left;
+        /* Reset justify for mobile readability */
+    }
+
+    .about-details {
+        margin-top: 0;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .glass-sphere {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 150px;
+        margin: 0 auto 2rem;
+        display: block;
+    }
+
+    /* Footer */
+    .footer__content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .footer__links {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer__link {
+        margin: 0 auto;
+    }
+
+    .footer__text {
+        font-size: 3rem;
+        /* Smaller "Big" text */
+    }
+
+    .footer__meta {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    /* Modal */
+    .modal-content {
+        width: 95%;
+        padding: 1.5rem;
+    }
+
+    .modal-title {
+        font-size: 1.75rem;
+    }
+
+    .budget-options {
+        gap: 0.5rem;
+    }
+
+    .budget-option span {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
 }
