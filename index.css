@@ -2054,16 +2054,21 @@ button,
         position: static !important;
         width: 120px;
         height: 120px;
-        margin: 0 auto 2rem;
-        order: 1;
-        /* GIF first */
+        margin: 2rem auto;
+        order: 3;
+        /* GIF third - between services and subtitle */
         transform: none !important;
         animation: none !important;
     }
 
     .about-intro {
+        order: 1;
+        /* Headline first */
+    }
+
+    .services-list {
         order: 2;
-        /* Headline second */
+        /* Services second */
     }
 
     .about-headline {
@@ -2072,8 +2077,8 @@ button,
     }
 
     .about-details {
-        order: 3;
-        /* Details last */
+        order: 4;
+        /* Subtitle last */
     }
 
     /* Footer */
