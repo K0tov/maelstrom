@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Креативний Директор — Портфоліо</title>
+    <meta name="description"
+        content="Мінімалістичне портфоліо дизайнера: мобільні додатки, брендинг та 3D дизайн з фокусом на швейцарську типографіку та естетику бруталізму.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+
+    <!-- Simplified JS - No GSAP needed -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="js/scroll-animations.js" defer></script>
+    <script src="js/cursor.js" defer></script>
+    <script src="js/image-reveal.js" defer></script>
+    <script src="js/navbar.js" defer></script>
+
+
+    <!-- Three.js for interactive gradient -->
+    <script src="https://unpkg.com/three@0.160.0/build/three.min.js"></script>
+    <script src="js/hero-gradient.js" defer></script>
+    <script src="js/maelstrom.js" defer></script>
+
+    <!-- Lenis Smooth Scroll -->
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="js/smooth-scroll.js" defer></script>
+</head>
+
+<body>
+    <!-- Ball Cursor -->
+    <div class="cursor-ball"></div>
+
+    <!-- Image Reveal Container -->
+    <div class="image-reveal-container">
+        <div class="image-reveal__inner">
+            <img src="assets/project-1.jpg" alt="Zenith Banking App" class="image-reveal__image">
+            <img src="assets/project-2.jpg" alt="Momentum Brand Identity" class="image-reveal__image">
+            <img src="assets/project-3.jpg" alt="3D Icon System" class="image-reveal__image">
+            <img src="assets/project-4.jpg" alt="Nova Music Player" class="image-reveal__image">
+            <img src="assets/project-5.jpg" alt="Pulse Fitness Rebrand" class="image-reveal__image">
+            <img src="assets/project-6.jpg" alt="Orbital Icon Pack" class="image-reveal__image">
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <header class="header">
+        <div class="header__container">
+            <div class="header__content">
+                <a href="#" class="header__logo">
+                    <span class="logo-icon">✦</span>
+                    <span class="logo-text">Maelstrom</span>
+                </a>
+
+                <nav class="header__nav">
+                    <a href="#work" class="nav-link">Роботи</a>
+                    <a href="#about" class="nav-link">Про мене</a>
+                    <a href="#contact" class="nav-link">Контакти</a>
+                </nav>
+
+                <a href="#join" id="openContact" class="shiny-cta"><span>Зв'язатись</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SVG Filter for RGB Glitch Effect -->
+    <svg style="display: none;">
+        <defs>
+            <filter id="glitch" x="-20%" y="-20%" width="140%" height="140%">
+                <!-- 1. Generate Noise & Distort Base Image -->
+                <feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" result="noise" />
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="0" result="distorted" />
+
+                <!-- 2. Split Red Channel -->
+                <feColorMatrix in="distorted" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
+                    result="R" />
+
+                <!-- 3. Split Green & Blue Channels -->
+                <feColorMatrix in="distorted" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 1 0"
+                    result="GB" />
+
+                <!-- 4. Shift Channels (RGB Split) - Animated via JS -->
+                <feOffset in="R" dx="0" dy="0" result="shiftedR" id="glitchOffsetR" />
+                <feOffset in="GB" dx="0" dy="0" result="shiftedGB" id="glitchOffsetGB" />
+
+                <!-- 5. Blend Back Together -->
+                <feBlend in="shiftedR" in2="shiftedGB" mode="screen" result="blend" />
+            </filter>
+        </defs>
+    </svg>
+
+    <!-- Hero Section (Full Width) -->
+    <section class="hero">
+        <!-- Interactive Gradient Canvas -->
+        <canvas id="heroGradient" class="hero__gradient"></canvas>
+
+        <div class="hero__container">
+            <div class="hero__grid">
+                <!-- Left Column: Text -->
+                <div class="hero__text-col">
+                    <div class="hero__content">
+                        <h2 class="hero__headline">Створюємо Порядок із Цифрового Хаосу</h2>
+                        <p class="hero__subline">Мобільні Додатки · Брендинг · 3D Іконки · Візуальні Системи</p>
+                    </div>
+                    <div class="hero__meta">
+                        <span class="meta-item">Базуюсь у NYC</span>
+                        <span class="meta-item">Відкритий до співпраці</span>
+                        <span class="meta-item">2026</span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual -->
+                <div class="hero__visual-col">
+                    <canvas id="maelstromCanvas" class="maelstrom-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main">
+
+
+        <!-- Horizontal Scroll Work Section -->
+        <section id="work" class="work-section">
+            <!-- Horizontal Scroll Container -->
+            <div class="horizontal-scroll-container">
+                <div class="horizontal-scroll-wrapper">
+                    <!-- Intro Card -->
+                    <article class="project-item project-item--intro">
+                        <h3 class="section-title">Вибрані<br>Роботи</h3>
+                        <span class="scroll-hint">Гортай &rarr;</span>
+                    </article>
+
+                    <!-- Projects -->
+                    <article class="project-item">
+                        <div class="project-item__index">01</div>
+                        <div class="project-item__content">
+                            <h4 class="project-item__title">Zenith Banking App</h4>
+                            <div class="project-item__meta">
+                                <span class="meta-tag">Мобільний Додаток</span>
+                                <span class="meta-tag">2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-item__index">02</div>
+                        <div class="project-item__content">
+                            <h4 class="project-item__title">Momentum Brand</h4>
+                            <div class="project-item__meta">
+                                <span class="meta-tag">Брендинг</span>
+                                <span class="meta-tag">2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-item__index">03</div>
+                        <div class="project-item__content">
+                            <h4 class="project-item__title">3D Icon System</h4>
+                            <div class="project-item__meta">
+                                <span class="meta-tag">3D Дизайн</span>
+                                <span class="meta-tag">2025</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-item__index">04</div>
+                        <div class="project-item__content">
+                            <h4 class="project-item__title">Nova Music Player</h4>
+                            <div class="project-item__meta">
+                                <span class="meta-tag">Мобільний Додаток</span>
+                                <span class="meta-tag">2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-item__index">05</div>
+                        <div class="project-item__content">
+                            <h4 class="project-item__title">Pulse Fitness</h4>
+                            <div class="project-item__meta">
+                                <span class="meta-tag">Брендинг</span>
+                                <span class="meta-tag">2024</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-item">
+                        <div class="project-item__index">06</div>
+                        <div class="project-item__content">
+                            <h4 class="project-item__title">Orbital Icons</h4>
+                            <div class="project-item__meta">
+                                <span class="meta-tag">3D Дизайн</span>
+                                <span class="meta-tag">2024</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Divider -->
+        <hr class="section-divider">
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <img src="391909180_THINKING_FACE_400px.gif" class="glass-sphere" alt="Thinking Face">
+                    <div class="about-intro">
+                        <h2 class="about-headline">Створюємо цифрові враження, що поєднують <span
+                                class="highlight">естетику</span> та <span class="highlight">функціональність</span>.
+                        </h2>
+                    </div>
+
+                    <div class="about-details">
+                        <p class="about-text">
+                            Я мультидисциплінарний дизайнер і розробник, сфокусований на створенні захоплюючих
+                            веб-інтерфейсів.
+                            З пристрастю до моушн-графіки та чистої типографіки, я допомагаю брендам розповідати їхні
+                            історії через
+                            інтерактивні та незабутні цифрові рішення.
+                        </p>
+
+                        <div class="services-list">
+                            <h4 class="services-title">Послуги</h4>
+                            <ul class="services-items">
+                                <li>Арт-дирекшн</li>
+                                <li>Веб-дизайн</li>
+                                <li>Креативна розробка</li>
+                                <li>Моушн-дизайн</li>
+                                <li>Айдентика бренду</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer id="contact" class="footer">
+            <div class="footer__content">
+                <div class="footer__info">
+                    <p class="footer__text">Створимо щось надзвичайне разом</p>
+                    <a href="mailto:hello@creative.com" class="footer__email">hello@creative.com</a>
+                </div>
+                <div class="footer__links">
+                    <a href="#" class="footer__link">Instagram</a>
+                    <a href="#" class="footer__link">Behance</a>
+                    <a href="#" class="footer__link">Dribbble</a>
+                    <a href="#" class="footer__link">LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer__meta">
+                <span class="meta-item">© 2026 Всі права захищено</span>
+                <span class="meta-item">Розроблено з точністю</span>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content glass-card">
+            <button id="closeContact" class="modal-close">&times;</button>
+            <h2 class="modal-title">Почнімо проект</h2>
+            <p class="modal-desc">Розкажіть про свою ідею, і ми створимо щось унікальне.</p>
+
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Ім'я</label>
+                    <input type="text" id="name" placeholder="Ваше ім'я" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Бюджет</label>
+                    <div class="budget-options">
+                        <label class="budget-option">
+                            <input type="radio" name="budget" value="small">
+                            <span>$1k - $5k</span>
+                        </label>
+                        <label class="budget-option">
+                            <input type="radio" name="budget" value="medium">
+                            <span>$5k - $15k</span>
+                        </label>
+                        <label class="budget-option">
+                            <input type="radio" name="budget" value="large">
+                            <span>$15k+</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Повідомлення</label>
+                    <textarea id="message" rows="4" placeholder="Деталі проекту..."></textarea>
+                </div>
+                <button type="submit" class="shiny-cta form-submit"><span>Відправити</span></button>
+            </form>
+        </div>
+        <div class="modal-backdrop"></div>
+    </div>
+
+    <!-- Load JavaScript Modules -->
+    <script src="js/cursor.js"></script>
+    <script src="js/image-reveal.js"></script>
+    <script src="js/modal.js"></script>
+
+
+</body>
+
+</html>
