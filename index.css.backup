@@ -49,6 +49,7 @@ html,
 body {
     cursor: none !important;
     font-family: var(--font-display);
+    /* Default font */
     color: var(--color-text);
     background-color: var(--color-bg);
     line-height: 1.5;
@@ -56,6 +57,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Smooth Scroll Wrapper */
 #smooth-wrapper {
     overflow: hidden;
 }
@@ -63,6 +65,8 @@ body {
 #smooth-content {
     overflow: visible;
 }
+
+/* Smooth scroll handled by Lenis library */
 
 img {
     max-width: 100%;
@@ -115,6 +119,7 @@ a:hover {
 
 .header {
     position: fixed;
+    /* Overlay on top of Hero */
     top: 0;
     left: 0;
     width: 100%;
@@ -128,18 +133,23 @@ a:hover {
     max-width: var(--container-max);
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.02);
+    /* Ultra-transparent */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Subtle white border */
     border-radius: 20px;
+    /* Softer radius */
     padding: var(--spacing-sm) 0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Deep glass shadow */
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Scrolled state */
 .header--scrolled .header__container {
     background: rgba(255, 255, 255, 0.8);
+    /* More opaque for readability */
     border-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -151,6 +161,7 @@ a:hover {
 .header--scrolled .header__logo,
 .header--scrolled .nav-link {
     color: #0A0E27;
+    /* Navy/Black for contrast on white glass */
 }
 
 .header--scrolled .nav-link::after {
@@ -161,8 +172,10 @@ a:hover {
 .header__logo,
 .nav-link {
     color: #fff;
+    /* White base (Hero) */
     font-weight: 500;
     transition: color 0.3s ease;
+    /* Smooth transition */
 }
 
 .header__content {
@@ -219,6 +232,7 @@ a:hover {
     width: 0;
     height: 1px;
     background-color: #fff;
+    /* White underline default */
     transition: width 0.3s ease, background-color 0.3s ease;
 }
 
@@ -226,6 +240,11 @@ a:hover {
     width: 100%;
 }
 
+
+
+/* ========================================
+   GLASSMORPHIC BUTTONS
+   ======================================== */
 
 /* ========================================
    SHINY CTA BUTTON
@@ -256,9 +275,11 @@ a:hover {
 
 :root {
     --shiny-cta-bg: #0A0E27;
+    /* Navy */
     --shiny-cta-bg-subtle: #151a35;
     --shiny-cta-fg: #ffffff;
     --shiny-cta-highlight: #F15A22;
+    /* Orange */
     --shiny-cta-highlight-subtle: #ff8c61;
 }
 
@@ -270,8 +291,10 @@ a:hover {
     position: relative;
     overflow: hidden;
     cursor: none;
+    /* Custom cursor */
     outline-offset: 4px;
     padding: 0.6rem 1.75rem;
+    /* Reduced padding */
     font-family: var(--font-display);
     font-size: 0.875rem;
     font-weight: 600;
@@ -452,12 +475,17 @@ a:hover {
 
 .main {
     width: 100%;
+    /* Full width to cover pinned Hero */
     position: relative;
     z-index: 2;
+    /* Sits above pinned Hero */
     background-color: var(--color-bg);
+    /* Opaque background */
     padding-bottom: 0;
+    /* Removed spacing to fix footer gap */
 }
 
+/* Reusable Container for Content Alignment */
 .container {
     max-width: var(--container-max);
     margin: 0 auto;
@@ -476,10 +504,13 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     position: relative;
+    /* For absolute canvas */
     padding: 0;
     background: #0A0E27;
     overflow: hidden;
+    /* Prevent spill */
     position: sticky;
+    /* CSS Layered Pinning */
     top: 0;
     z-index: 1;
 }
@@ -492,6 +523,7 @@ a:hover {
     position: relative;
     z-index: 2;
     height: 100%;
+    /* Full height for vertical centering */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -521,6 +553,7 @@ a:hover {
     font-family: var(--font-mono);
     font-size: 0.875rem;
     color: var(--shiny-cta-highlight);
+    /* Orange accent */
     text-transform: uppercase;
     letter-spacing: 0.2em;
     display: block;
@@ -552,18 +585,23 @@ a:hover {
     margin-bottom: var(--spacing-sm);
     max-width: 900px;
     color: #FFFFFF;
+    /* White for dark bg */
     font-size: clamp(3rem, 6vw, 5rem);
+    /* Larger, more impact */
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
     mix-blend-mode: normal;
+    /* Clear visibility */
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* Subtle depth */
 }
 
 .hero__subline {
     font-family: var(--font-mono);
     font-size: 1.125rem;
     color: rgba(255, 255, 255, 0.7);
+    /* Slightly muted white */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     max-width: 600px;
@@ -601,7 +639,13 @@ a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Background styles removed */
 
+/* Ensure content sits above background */
+.horizontal-scroll-container {
+    position: relative;
+    z-index: 1;
+}
 
 /* ========================================
    HORIZONTAL WORK SECTION
@@ -610,6 +654,7 @@ a:hover {
 .work-section {
     width: 100%;
     height: 100vh;
+    /* Full viewport height for pinning */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -645,6 +690,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* Center content vertically */
     padding: var(--spacing-xl);
     border-right: 1px solid var(--color-border);
     border-left: none;
@@ -653,11 +699,14 @@ a:hover {
     transition: all 0.3s ease;
     cursor: pointer;
     background-color: transparent;
+    /* Allow bg to show */
     position: relative;
     z-index: 1;
 }
 
 .project-item:first-child {
+    border-left: null;
+    /* No left border needed if full screen start? Or keep it. */
     border-left: 1px solid var(--color-border);
 }
 
@@ -666,6 +715,7 @@ a:hover {
 /* Intro Card Specifics */
 .project-item--intro {
     width: 100vw;
+    /* Full screen intro */
     background: transparent;
     justify-content: center;
     padding-left: var(--spacing-xl);
@@ -673,7 +723,7 @@ a:hover {
     cursor: default;
 }
 
-
+/* Restored Project Title Styles */
 .project-item__title {
     font-size: clamp(6rem, 15vw, 16rem);
     line-height: 0.8;
@@ -689,6 +739,7 @@ a:hover {
     left: var(--spacing-lg);
     font-family: var(--font-mono);
     font-size: 4rem;
+    /* Massive Index */
     font-weight: 500;
     opacity: 0.5;
 }
@@ -700,6 +751,7 @@ a:hover {
     font-family: var(--font-mono);
     text-transform: uppercase;
     font-size: 1.25rem;
+    /* Larger Meta */
     font-weight: 600;
     letter-spacing: 0.05em;
     opacity: 0.8;
@@ -721,6 +773,7 @@ a:hover {
     border-color: var(--color-border);
 }
 
+/* Description removed */
 
 .scroll-hint {
     margin-top: var(--spacing-xl);
@@ -1598,6 +1651,7 @@ button,
     padding: 3.5rem;
     position: relative;
     box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
+    /* Deep shadow */
     transform: translateY(30px) scale(0.95);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -1611,6 +1665,7 @@ button,
     top: 2rem;
     right: 2rem;
     background: rgba(255, 255, 255, 0.05);
+    /* Visible button bg */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     width: 40px;
@@ -1634,6 +1689,7 @@ button,
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     color: #fff;
+    /* Pure white */
 }
 
 .modal-desc {
@@ -1842,11 +1898,13 @@ button,
         display: flex;
     }
 
+    /* Hide Desktop Nav Elements */
     .header__nav,
     .desktop-only {
         display: none !important;
     }
 
+    /* Mobile Header - Keep Glassmorphic Style */
     .header__container {
         padding: 0.75rem 1rem;
     }
@@ -1881,6 +1939,7 @@ button,
         margin-left: auto;
     }
 
+    /* Disable Custom Cursor */
     .cursor-ball,
     .cursor-outline,
     body {
@@ -1891,6 +1950,7 @@ button,
         display: none !important;
     }
 
+    /* Prevent Horizontal Scroll */
     html,
     body {
         overflow-x: hidden;
@@ -1913,6 +1973,7 @@ button,
 
     .hero__visual-col {
         display: none;
+        /* Hide 3D canvas on mobile */
     }
 
     .hero__headline {
@@ -1928,11 +1989,13 @@ button,
         justify-content: flex-start;
     }
 
+    /* WORKS - Vertical Stack for Mobile */
     .work-section {
         height: auto;
         min-height: auto;
         padding: var(--spacing-lg) 0;
         overflow: hidden;
+        /* Prevent horizontal scroll */
     }
 
     .horizontal-scroll-container {
@@ -1943,18 +2006,23 @@ button,
 
     .horizontal-scroll-wrapper {
         flex-direction: column;
+        /* Stack vertically */
         height: auto;
         width: 100%;
         transform: none !important;
+        /* Disable JS transform */
         padding-left: 0;
         gap: 0;
     }
 
     .project-item {
+        /* Standard card style */
         width: 100% !important;
+        /* Override any inline JS width */
         max-width: 100%;
         height: auto;
         min-height: auto;
+        /* Reduced from 50vh */
         border-right: none;
         border-bottom: 1px solid var(--color-border);
         padding: var(--spacing-md);
@@ -1964,6 +2032,7 @@ button,
     .project-item--intro {
         height: auto;
         min-height: auto;
+        /* Reduced from 30vh */
         padding-left: var(--spacing-md);
         text-align: left;
     }
@@ -1992,6 +2061,7 @@ button,
         line-height: 1.2;
     }
 
+    /* About Section - Fix GIF Overlap */
     .about-grid {
         display: flex !important;
         flex-direction: column;
@@ -2004,16 +2074,19 @@ button,
         height: 120px;
         margin: 2rem auto;
         order: 3;
+        /* GIF third - between services and subtitle */
         transform: none !important;
         animation: none !important;
     }
 
     .about-intro {
         order: 1;
+        /* Headline first */
     }
 
     .services-list {
         order: 2;
+        /* Services second */
     }
 
     .about-headline {
@@ -2023,16 +2096,20 @@ button,
 
     .about-details {
         order: 4;
+        /* Subtitle last */
     }
 
+    /* Footer */
     .footer__content {
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: left;
+        /* Left align for mobile */
     }
 
     .footer__text {
         font-size: clamp(2rem, 12vw, 4rem);
+        /* More controlled scaling */
         text-align: left;
         line-height: 1.1;
     }
@@ -2043,16 +2120,20 @@ button,
 
     .footer__links {
         grid-template-columns: 1fr;
+        /* Single column links */
         gap: 1.5rem;
     }
 
+    /* Modal Mobile */
     .modal-content {
         width: 100%;
         height: 100%;
         max-width: none;
         border-radius: 0;
         padding: 6rem 1.5rem 2rem;
+        /* Top padding for close button */
         overflow-y: auto;
+        /* Allow scroll inside modal */
     }
 
     .modal-close {
