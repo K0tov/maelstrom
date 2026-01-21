@@ -172,5 +172,16 @@ class Maelstrom {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    // Skip on mobile devices for performance
+    if (window.innerWidth < 768) {
+        console.log('🌀 Maelstrom animation skipped on mobile');
+        const canvas = document.getElementById('maelstromCanvas');
+        if (canvas) {
+            canvas.style.display = 'none';
+        }
+        return;
+    }
+
     new Maelstrom();
+    console.log('🌀 Maelstrom animation initialized');
 });

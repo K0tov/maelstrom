@@ -38,17 +38,25 @@
     --grid-gap: 2rem;
 }
 
-/* Hide system cursor completely */
-*,
-*::before,
-*::after {
-    cursor: none !important;
+/* Hide system cursor on desktop only */
+@media (hover: hover) and (pointer: fine) {
+
+    *,
+    *::before,
+    *::after {
+        cursor: none !important;
+    }
+
+    html,
+    body {
+        cursor: none !important;
+    }
 }
 
 html,
 body {
-    cursor: none !important;
     font-family: var(--font-display);
+    /* Default font */
     color: var(--color-text);
     background-color: var(--color-bg);
     line-height: 1.5;
@@ -56,6 +64,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Smooth Scroll Wrapper */
 #smooth-wrapper {
     overflow: hidden;
 }
@@ -63,6 +72,8 @@ body {
 #smooth-content {
     overflow: visible;
 }
+
+/* Smooth scroll handled by Lenis library */
 
 img {
     max-width: 100%;
@@ -115,6 +126,7 @@ a:hover {
 
 .header {
     position: fixed;
+    /* Overlay on top of Hero */
     top: 0;
     left: 0;
     width: 100%;
@@ -128,18 +140,23 @@ a:hover {
     max-width: var(--container-max);
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.02);
+    /* Ultra-transparent */
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border: 1px solid rgba(255, 255, 255, 0.15);
+    /* Subtle white border */
     border-radius: 20px;
+    /* Softer radius */
     padding: var(--spacing-sm) 0;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    /* Deep glass shadow */
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Scrolled state */
 .header--scrolled .header__container {
     background: rgba(255, 255, 255, 0.8);
+    /* More opaque for readability */
     border-color: rgba(255, 255, 255, 0.5);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
@@ -151,6 +168,7 @@ a:hover {
 .header--scrolled .header__logo,
 .header--scrolled .nav-link {
     color: #0A0E27;
+    /* Navy/Black for contrast on white glass */
 }
 
 .header--scrolled .nav-link::after {
@@ -161,8 +179,10 @@ a:hover {
 .header__logo,
 .nav-link {
     color: #fff;
+    /* White base (Hero) */
     font-weight: 500;
     transition: color 0.3s ease;
+    /* Smooth transition */
 }
 
 .header__content {
@@ -219,6 +239,7 @@ a:hover {
     width: 0;
     height: 1px;
     background-color: #fff;
+    /* White underline default */
     transition: width 0.3s ease, background-color 0.3s ease;
 }
 
@@ -226,6 +247,11 @@ a:hover {
     width: 100%;
 }
 
+
+
+/* ========================================
+   GLASSMORPHIC BUTTONS
+   ======================================== */
 
 /* ========================================
    SHINY CTA BUTTON
@@ -256,9 +282,11 @@ a:hover {
 
 :root {
     --shiny-cta-bg: #0A0E27;
+    /* Navy */
     --shiny-cta-bg-subtle: #151a35;
     --shiny-cta-fg: #ffffff;
     --shiny-cta-highlight: #F15A22;
+    /* Orange */
     --shiny-cta-highlight-subtle: #ff8c61;
 }
 
@@ -270,8 +298,10 @@ a:hover {
     position: relative;
     overflow: hidden;
     cursor: none;
+    /* Custom cursor */
     outline-offset: 4px;
     padding: 0.6rem 1.75rem;
+    /* Reduced padding */
     font-family: var(--font-display);
     font-size: 0.875rem;
     font-weight: 600;
@@ -452,12 +482,17 @@ a:hover {
 
 .main {
     width: 100%;
+    /* Full width to cover pinned Hero */
     position: relative;
     z-index: 2;
+    /* Sits above pinned Hero */
     background-color: var(--color-bg);
+    /* Opaque background */
     padding-bottom: 0;
+    /* Removed spacing to fix footer gap */
 }
 
+/* Reusable Container for Content Alignment */
 .container {
     max-width: var(--container-max);
     margin: 0 auto;
@@ -476,10 +511,13 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     position: relative;
+    /* For absolute canvas */
     padding: 0;
     background: #0A0E27;
     overflow: hidden;
+    /* Prevent spill */
     position: sticky;
+    /* CSS Layered Pinning */
     top: 0;
     z-index: 1;
 }
@@ -492,6 +530,7 @@ a:hover {
     position: relative;
     z-index: 2;
     height: 100%;
+    /* Full height for vertical centering */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -521,6 +560,7 @@ a:hover {
     font-family: var(--font-mono);
     font-size: 0.875rem;
     color: var(--shiny-cta-highlight);
+    /* Orange accent */
     text-transform: uppercase;
     letter-spacing: 0.2em;
     display: block;
@@ -552,18 +592,23 @@ a:hover {
     margin-bottom: var(--spacing-sm);
     max-width: 900px;
     color: #FFFFFF;
+    /* White for dark bg */
     font-size: clamp(3rem, 6vw, 5rem);
+    /* Larger, more impact */
     font-weight: 700;
     line-height: 1.1;
     letter-spacing: -0.02em;
     mix-blend-mode: normal;
+    /* Clear visibility */
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* Subtle depth */
 }
 
 .hero__subline {
     font-family: var(--font-mono);
     font-size: 1.125rem;
     color: rgba(255, 255, 255, 0.7);
+    /* Slightly muted white */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     max-width: 600px;
@@ -601,7 +646,13 @@ a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+/* Background styles removed */
 
+/* Ensure content sits above background */
+.horizontal-scroll-container {
+    position: relative;
+    z-index: 1;
+}
 
 /* ========================================
    HORIZONTAL WORK SECTION
@@ -610,6 +661,7 @@ a:hover {
 .work-section {
     width: 100%;
     height: 100vh;
+    /* Full viewport height for pinning */
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -645,6 +697,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    /* Center content vertically */
     padding: var(--spacing-xl);
     border-right: 1px solid var(--color-border);
     border-left: none;
@@ -653,11 +706,14 @@ a:hover {
     transition: all 0.3s ease;
     cursor: pointer;
     background-color: transparent;
+    /* Allow bg to show */
     position: relative;
     z-index: 1;
 }
 
 .project-item:first-child {
+    border-left: null;
+    /* No left border needed if full screen start? Or keep it. */
     border-left: 1px solid var(--color-border);
 }
 
@@ -666,6 +722,7 @@ a:hover {
 /* Intro Card Specifics */
 .project-item--intro {
     width: 100vw;
+    /* Full screen intro */
     background: transparent;
     justify-content: center;
     padding-left: var(--spacing-xl);
@@ -673,7 +730,7 @@ a:hover {
     cursor: default;
 }
 
-
+/* Restored Project Title Styles */
 .project-item__title {
     font-size: clamp(6rem, 15vw, 16rem);
     line-height: 0.8;
@@ -689,6 +746,7 @@ a:hover {
     left: var(--spacing-lg);
     font-family: var(--font-mono);
     font-size: 4rem;
+    /* Massive Index */
     font-weight: 500;
     opacity: 0.5;
 }
@@ -700,6 +758,7 @@ a:hover {
     font-family: var(--font-mono);
     text-transform: uppercase;
     font-size: 1.25rem;
+    /* Larger Meta */
     font-weight: 600;
     letter-spacing: 0.05em;
     opacity: 0.8;
@@ -721,6 +780,7 @@ a:hover {
     border-color: var(--color-border);
 }
 
+/* Description removed */
 
 .scroll-hint {
     margin-top: var(--spacing-xl);
@@ -765,6 +825,12 @@ a:hover {
 .project-thumb {
     display: none !important;
 }
+
+/* Hide preview images on desktop (shown on mobile only) */
+.project-item__preview {
+    display: none;
+}
+
 
 
 
@@ -1598,6 +1664,7 @@ button,
     padding: 3.5rem;
     position: relative;
     box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
+    /* Deep shadow */
     transform: translateY(30px) scale(0.95);
     transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -1611,6 +1678,7 @@ button,
     top: 2rem;
     right: 2rem;
     background: rgba(255, 255, 255, 0.05);
+    /* Visible button bg */
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 50%;
     width: 40px;
@@ -1634,6 +1702,7 @@ button,
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
     color: #fff;
+    /* Pure white */
 }
 
 .modal-desc {
@@ -1775,41 +1844,65 @@ button,
     width: 100%;
     height: 100vh;
     background: rgba(10, 14, 39, 0.98);
-    /* Deep dark blue, almost opaque */
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     z-index: 1001;
-    /* Below burger, above header */
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.4s ease;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+        visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .mobile-menu.active {
     opacity: 1;
     visibility: visible;
+    pointer-events: all;
 }
 
 .mobile-menu__links {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3rem;
+    gap: 2.5rem;
     text-align: center;
+    padding: 2rem;
 }
 
 .mobile-link {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: clamp(2rem, 8vw, 3rem);
     font-weight: 700;
     color: #fff;
     text-transform: uppercase;
     text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
     opacity: 0;
     transform: translateY(20px);
-    transition: all 0.4s ease;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.mobile-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: #F15A22;
+    transition: width 0.3s ease;
+}
+
+.mobile-link:active::after {
+    width: 60%;
 }
 
 .mobile-menu.active .mobile-link {
@@ -1817,7 +1910,7 @@ button,
     transform: translateY(0);
 }
 
-/* Stagger animation delay */
+/* Stagger animation */
 .mobile-menu.active .mobile-link:nth-child(1) {
     transition-delay: 0.1s;
 }
@@ -1842,25 +1935,68 @@ button,
         display: flex;
     }
 
+    /* Hide Desktop Nav Elements */
     .header__nav,
     .desktop-only {
         display: none !important;
     }
 
+    /* Mobile Header Optimization */
+    .header {
+        padding: 1rem 0.75rem 0;
+    }
+
     .header__container {
-        padding: 0.75rem 1rem;
+        padding: 0.625rem 1rem;
+        background: rgba(10, 14, 39, 0.75) !important;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 16px;
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Scrolled header gets more opaque */
+    .header--scrolled .header__container {
+        padding: 0.5rem 1rem;
+        background: rgba(10, 14, 39, 0.9) !important;
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
     }
 
     .header__logo {
         color: #fff !important;
+        font-size: 1.125rem;
     }
 
-    .logo-icon,
+    .logo-icon {
+        color: #fff !important;
+        font-size: 1.25rem;
+    }
+
     .logo-text {
         color: #fff !important;
+        font-size: 1.125rem;
+    }
+
+    /* Burger button - larger touch target */
+    .burger-btn {
+        flex-shrink: 0;
+        margin-left: auto;
+        padding: 0.5rem;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .burger-btn span {
+        background-color: #fff !important;
+        width: 24px;
+        height: 2px;
+    }
+
+    .header--scrolled .burger-btn span {
         background-color: #fff !important;
     }
 
@@ -1870,69 +2006,77 @@ button,
         justify-content: space-between !important;
         align-items: center !important;
         width: 100%;
+        padding: 0;
     }
 
-    .header__logo {
-        flex-shrink: 0;
-    }
-
-    .burger-btn {
-        flex-shrink: 0;
-        margin-left: auto;
-    }
-
-    .cursor-ball,
-    .cursor-outline,
-    body {
-        cursor: auto !important;
-    }
-
+    /* Disable Custom Cursor on Touch Devices */
     .cursor-ball {
         display: none !important;
     }
 
+    /* Prevent Horizontal Scroll */
     html,
     body {
         overflow-x: hidden;
-        max-width: 100vw;
     }
 
-    /* Hero */
+    /* Hero Section Mobile Optimization */
+    .hero {
+        min-height: 100vh;
+        padding-top: 5rem;
+    }
+
     .hero__grid {
         grid-template-columns: 1fr;
-        padding-top: 1vh;
         gap: 2rem;
-        align-content: center;
-        height: 100%;
-        text-align: left;
-    }
-
-    .hero__container {
-        padding: 0 var(--spacing-md);
+        padding: 2rem 0;
     }
 
     .hero__visual-col {
-        display: none;
+        height: 35vh;
+        max-height: 280px;
+        order: 2;
+    }
+
+    .hero__text-col {
+        order: 1;
+    }
+
+    .hero__content {
+        margin-bottom: var(--spacing-md);
     }
 
     .hero__headline {
-        font-size: clamp(2.5rem, 10vw, 3.5rem);
-        text-align: left;
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.15;
+        margin-bottom: 1rem;
+        letter-spacing: -0.01em;
     }
 
     .hero__subline {
-        text-align: left;
+        font-size: 0.875rem;
+        /* Smaller for mobile */
     }
 
     .hero__meta {
         justify-content: flex-start;
+        gap: 0.5rem;
+        /* Tighter spacing */
+        margin-top: 1.5rem;
     }
 
+    /* Smaller meta pills for mobile */
+    .hero__meta .meta-item {
+        padding: 0.5rem 0.875rem;
+        font-size: 0.65rem;
+    }
+
+    /* WORKS - Vertical Stack for Mobile */
     .work-section {
         height: auto;
         min-height: auto;
-        padding: var(--spacing-lg) 0;
-        overflow: hidden;
+        padding: var(--spacing-xl) 0;
+        overflow: visible;
     }
 
     .horizontal-scroll-container {
@@ -1946,10 +2090,16 @@ button,
         height: auto;
         width: 100%;
         transform: none !important;
-        padding-left: 0;
+        padding: 0;
         gap: 0;
     }
 
+    /* Hide intro card on mobile */
+    .project-item--intro {
+        display: none;
+    }
+
+    /* Mobile Project Cards with Images */
     .project-item {
         width: 100% !important;
         max-width: 100%;
@@ -1957,27 +2107,94 @@ button,
         min-height: auto;
         border-right: none;
         border-bottom: 1px solid var(--color-border);
-        padding: var(--spacing-md);
+        border-left: none;
+        padding: 0;
         scroll-snap-align: none;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: all 0.3s ease;
     }
 
-    .project-item--intro {
-        height: auto;
-        min-height: auto;
-        padding-left: var(--spacing-md);
-        text-align: left;
+    .project-item:last-child {
+        border-bottom: none;
     }
 
-    .section-title {
-        font-size: 2.5rem;
-        line-height: 1.1;
+    /* Project Preview Image */
+    .project-item__preview {
+        display: block !important;
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    /* Project Content Overlay */
+    .project-item__content {
+        padding: var(--spacing-md);
+        background: var(--color-bg);
+        position: relative;
+    }
+
+    /* Index Number - Top Right Corner */
+    .project-item__index {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        font-size: 0.75rem;
+        opacity: 0.5;
+        z-index: 2;
+        background: rgba(255, 255, 255, 0.9);
+        color: #0A0E27;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+
+    /* Project Title */
+    .project-item__title {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+    }
+
+    /* Project Meta */
+    .project-item__meta {
+        font-size: 0.75rem;
+        opacity: 0.7;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .meta-tag {
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 0.25rem 0.75rem;
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 12px;
+        font-size: 0.65rem;
+    }
+
+    /* Touch Feedback */
+    .project-item:active {
+        background: rgba(0, 0, 0, 0.02);
+    }
+
+    .project-item:active .project-item__preview {
+        opacity: 0.9;
     }
 
     .scroll-hint {
         display: none;
     }
-
-    /* No scroll hint needed for vertical */
 
     .project-item__index {
         position: static;
@@ -1987,9 +2204,20 @@ button,
     }
 
     .project-item__title {
-        font-size: 1.75rem;
-        /* Smaller, readable mobile size */
+        font-size: 1.5rem;
+        /* More readable mobile size */
         line-height: 1.2;
+    }
+
+    .project-item__meta {
+        font-size: 0.875rem;
+        /* Increased for better readability */
+        opacity: 0.7;
+    }
+
+    /* About Section - Fix GIF Overlap */
+    .about-section {
+        padding: var(--spacing-xl) 0;
     }
 
     .about-grid {
@@ -2004,35 +2232,45 @@ button,
         height: 120px;
         margin: 2rem auto;
         order: 3;
+        /* GIF third - between services and subtitle */
         transform: none !important;
         animation: none !important;
+        z-index: 1;
+        /* Fix z-index layering */
     }
 
     .about-intro {
         order: 1;
+        /* Headline first */
     }
 
     .services-list {
         order: 2;
+        /* Services second */
     }
 
     .about-headline {
-        font-size: 2rem;
-        line-height: 1.2;
+        font-size: 1.75rem;
+        /* Slightly smaller for mobile */
+        line-height: 1.25;
     }
 
     .about-details {
         order: 4;
+        /* Subtitle last */
     }
 
+    /* Footer */
     .footer__content {
         grid-template-columns: 1fr;
         gap: 3rem;
         text-align: left;
+        /* Left align for mobile */
     }
 
     .footer__text {
         font-size: clamp(2rem, 12vw, 4rem);
+        /* More controlled scaling */
         text-align: left;
         line-height: 1.1;
     }
@@ -2043,16 +2281,20 @@ button,
 
     .footer__links {
         grid-template-columns: 1fr;
+        /* Single column links */
         gap: 1.5rem;
     }
 
+    /* Modal Mobile */
     .modal-content {
         width: 100%;
         height: 100%;
         max-width: none;
         border-radius: 0;
         padding: 6rem 1.5rem 2rem;
+        /* Top padding for close button */
         overflow-y: auto;
+        /* Allow scroll inside modal */
     }
 
     .modal-close {
