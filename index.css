@@ -1914,9 +1914,20 @@ button,
     }
 
     .header__content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100%;
+    }
+
+    .header__logo {
+        flex-shrink: 0;
+    }
+
+    .burger-btn {
+        flex-shrink: 0;
+        margin-left: auto;
     }
 
     /* Disable Custom Cursor */
