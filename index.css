@@ -66,9 +66,7 @@ body {
     overflow: visible;
 }
 
-html {
-    /* scroll-behavior: smooth;  <-- Removed to let Lenis handle it */
-}
+/* Smooth scroll handled by Lenis library */
 
 img {
     max-width: 100%;
@@ -759,9 +757,7 @@ a:hover {
     opacity: 0.8;
 }
 
-.project-item__input {
-    /* Potential future use */
-}
+
 
 .project-item--intro .section-title {
     font-size: clamp(6rem, 15vw, 16rem);
@@ -1233,9 +1229,7 @@ button,
     border-bottom: 1px solid var(--color-border);
 }
 
-.marquee-track {
-    /* Animation handled by GSAP */
-}
+/* Marquee animation handled by GSAP */
 
 .marquee-text {
     font-size: clamp(3rem, 8vw, 6rem);
