@@ -56,6 +56,9 @@
         }
     }
 
+    // --- Header Scroll Detection ---
+    const header = document.querySelector('.header');
+
     if (!header) {
         console.warn('⚠️ Header element not found');
         return;
