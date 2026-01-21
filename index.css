@@ -1956,12 +1956,14 @@ button,
     .hero__grid {
         grid-template-columns: 1fr;
         padding-top: 1vh;
-        /* Reset padding */
         gap: 2rem;
         align-content: center;
         height: 100%;
-        text-align: center;
-        /* Center text since no visual */
+        text-align: left;
+    }
+
+    .hero__container {
+        padding: 0 var(--spacing-md);
     }
 
     .hero__visual-col {
@@ -1971,12 +1973,15 @@ button,
 
     .hero__headline {
         font-size: clamp(2.5rem, 10vw, 3.5rem);
-        margin: 0 auto;
+        text-align: left;
+    }
+
+    .hero__subline {
+        text-align: left;
     }
 
     .hero__meta {
-        justify-content: center;
-        /* Center since no visual */
+        justify-content: flex-start;
     }
 
     /* WORKS - Vertical Stack for Mobile */
